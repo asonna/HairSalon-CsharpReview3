@@ -1,0 +1,34 @@
+Specifications:
+
+Behavior: Check that client Table is empty at first
+Input: null
+Output: 0;
+Description: To ensure that we are starting with an empty client table and code will return nothing when query for content (GetAll clients lists).
+
+Behavior: Check that system returns recognize the equality between two instances with same value
+Input: Client firstClient = new Client("Ally Berry", "602 895 5064", 1);
+       Client secondClient = new Client("Ally Berry", "602 895 5064", 1);
+Output: True
+Description: To ensure that the code will be able to equate a value against the database when executing the search object(Find specify client by one property).
+
+Behavior: Check that new client can be entered and saved to database
+Input: Client firstClient = new Client("Ally Berry", "602 895 5064", 1);
+Output: 1;
+Description: To ensure that entries are been saved to the database (Useful if client needs to be found in the database later).
+
+Behavior: Check that each client object is been assigned ans unique Id.
+Input:  Client testClient = new Client("Veronique Moore", "1 214 896 2378", 2);
+        Client savedClient = Client.GetAll()[0];
+
+Output: int testId = testClient.GetId();
+Description: To ensure that client objects can later been found by their unique Id or also matched through their unique id (Find the client with client Id  1).
+
+Behavior: Check to find client object in database
+Input: testClient.GetId()
+Output: testClient
+Description: To ensure that we are able to find any client object based on their Id property.
+
+Behavior:
+Input:
+Output:
+Description:
