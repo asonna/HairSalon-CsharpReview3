@@ -11,7 +11,7 @@ namespace HairSalon
     // private int _number; // Stylist Number
     // private int _clientId;
 
-    public Stylist(string name, int number, int Id = 0) //int clientId)
+    public Stylist(string name, int Id = 0) //int stylistId)
     {
       _name = name;
       // _number = number;
@@ -53,6 +53,35 @@ namespace HairSalon
     // {
     //   return _number;
     // }
+
+    public void Save()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (name) OUTPUT INSERTED.id VALUES (@StylistName);", conn);
+
+      SqlParameter[] insertParameters = new SqlParameter[]
+      {
+        new SqlParameter("@StylistName", _name)
+        // new SqlParameter("@StylistNumber", _number),
+      };
+      cmd.Parameters.AddRange(insertParameters);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
 
     public static List<Stylist> GetAll()
     {
