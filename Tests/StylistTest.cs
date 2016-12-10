@@ -24,8 +24,8 @@ namespace HairSalon
     public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_true()
     {
       //Arrange, Act
-      Stylist firstStylist = new Stylist("Ally Berry", 1);
-      Stylist secondStylist = new Stylist("Ally Berry", 1);
+      Stylist firstStylist = new Stylist("Ally Berry");
+      Stylist secondStylist = new Stylist("Ally Berry");
 
       //Assert
       Assert.Equal(firstStylist, secondStylist);
@@ -35,7 +35,7 @@ namespace HairSalon
     public void Save_SavesStylistToDatabase_testList()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Ally Berry", 1);
+      Stylist testStylist = new Stylist("Ally Berry");
       testStylist.Save();
 
       //Act
@@ -44,6 +44,24 @@ namespace HairSalon
 
       //Assert
       Assert.Equal(testList, result);
+    }
+
+
+    [Fact]
+    public void Save_AssignsIdToStylistObject_testId()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Veronique Moore");
+      testStylist.Save();
+
+      //Act
+      Stylist savedStylist = Stylist.GetAll()[0];
+
+      int result = savedStylist.GetId();
+      int testId = testStylist.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
     }
 
     public void Dispose()

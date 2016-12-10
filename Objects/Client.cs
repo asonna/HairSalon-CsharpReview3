@@ -89,7 +89,7 @@ namespace HairSalon
       }
     }
 
-  
+    
     public static List<Client> GetAll()
     {
       List<Client> allClients = new List<Client>{};
