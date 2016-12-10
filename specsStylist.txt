@@ -1,0 +1,42 @@
+Home page
+
+  Welcome to the Best Hair Salon in Beaverton
+
+
+  Specifications:
+
+  For the Stylist object:
+  -----------------------
+
+  Behavior: Check that stylist Table is empty at first
+  Input: null
+  Output: 0;
+  Description: To ensure that we are starting with an empty stylist table and code will return nothing when query for content (GetAll stylists lists).
+
+  Behavior: Check that system returns recognize the equality between two Stylist instances with same value
+  Input: Stylist firstStylist = new Stylist("Ally Berry", "602 895 5064");
+         Stylist secondStylist = new Stylist("Ally Berry", "602 895 5064");
+  Output: True
+  Description: To ensure that the code will be able to equate a value against the database when executing the search object(Find specify Stylist by one property).
+
+  Behavior: Check that new stylist can be entered and saved to database
+  Input: Stylist firstStylist = new Stylist("Ally Berry", "602 895 5064");
+  Output: 1;
+  Description: To ensure that entries are been saved to the database (Useful if stylist needs to be found in the database later).
+
+  Behavior: Check that each stylist object is been assigned an unique Id.
+  Input:  Stylist testStylist = new Stylist("Veronique Moore", "1 214 896 2378");
+          Stylist savedStylist = Stylist.GetAll()[0];
+
+  Output: int testId = testStylist.GetId();
+  Description: To ensure that stylist objects can later been found by their unique Id or also matched through their unique id (eg: Find the stylist with stylist Id  1).
+
+  Behavior: Check to find stylist object in database
+  Input: testStylist.GetId()
+  Output: testStylist
+  Description: To ensure that we are able to find any stylist object based on their Id property.
+
+  Behavior:
+  Input:
+  Output:
+  Description:

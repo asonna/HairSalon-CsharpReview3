@@ -1,5 +1,8 @@
 Specifications:
 
+For the Client Object:
+----------------------
+
 Behavior: Check that client Table is empty at first
 Input: null
 Output: 0;
@@ -16,7 +19,7 @@ Input: Client firstClient = new Client("Ally Berry", "602 895 5064", 1);
 Output: 1;
 Description: To ensure that entries are been saved to the database (Useful if client needs to be found in the database later).
 
-Behavior: Check that each client object is been assigned ans unique Id.
+Behavior: Check that each client object is been assigned an unique Id.
 Input:  Client testClient = new Client("Veronique Moore", "1 214 896 2378", 2);
         Client savedClient = Client.GetAll()[0];
 
