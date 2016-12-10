@@ -7,14 +7,14 @@ namespace HairSalon
   public class Client
   {
     private string _name; //Client Name
-    private int _number;
+    // private int _number;
     private int _id; //Client ID
     private int _stylistId;
 
-    public Client(string name, int number, int Id = 0, int stylistId = 0)
+    public Client(string name, int Id = 0, int stylistId = 0)
     {
       _name = name;
-      _number = number;
+      // _number = number;
       _id = Id;
       _stylistId = stylistId;
     }
@@ -34,10 +34,10 @@ namespace HairSalon
       }
     }
 
-    public override int GetHashCode()
-    {
-       return this._number.GetHashCode();
-    }
+    // public override int GetHashCode()
+    // {
+    //    return this._number.GetHashCode();
+    // }
 
     public int GetId()
     {
@@ -49,17 +49,17 @@ namespace HairSalon
       return _name;
     }
 
-    public int GetNumber()
-    {
-      return _number;
-    }
+    // public int GetNumber()
+    // {
+    //   return _number;
+    // }
 
     public int GetStylistId()
     {
       return _stylistId;
     }
 
-    
+
     public static List<Client> GetAll()
     {
       List<Client> allClients = new List<Client>{};
@@ -74,9 +74,9 @@ namespace HairSalon
       {
         int clientId = rdr.GetInt32(0);
         string clientName = rdr.GetString(1);
-        int clientNumber = rdr.GetInt32(2);
-        int clientStylistId = rdr.GetInt32(3);
-        Client newClient = new Client(clientName, clientNumber, clientId, clientStylistId);
+        // int clientNumber = rdr.GetInt32(3);
+        int clientStylistId = rdr.GetInt32(2);
+        Client newClient = new Client(clientName, clientId, clientStylistId);
         allClients.Add(newClient);
       }
 

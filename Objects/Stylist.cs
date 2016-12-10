@@ -8,13 +8,13 @@ namespace HairSalon
   {
     private int _id; //Stylist ID
     private string _name; //Stylist Name
-    private int _number; // Stylist Number
+    // private int _number; // Stylist Number
     // private int _clientId;
 
     public Stylist(string name, int number, int Id = 0) //int clientId)
     {
       _name = name;
-      _number = number;
+      // _number = number;
       _id = Id;
       // _clientId = clientId;
     }
@@ -34,10 +34,10 @@ namespace HairSalon
       }
     }
 
-    public override int GetHashCode()
-    {
-       return this._number.GetHashCode();
-    }
+    // public override int GetHashCode()
+    // {
+    //    return this._number.GetHashCode();
+    // }
 
     public int GetId()
     {
@@ -49,10 +49,10 @@ namespace HairSalon
       return _name;
     }
 
-    public int GetNumber()
-    {
-      return _number;
-    }
+    // public int GetNumber()
+    // {
+    //   return _number;
+    // }
 
     public static List<Stylist> GetAll()
     {
@@ -68,9 +68,9 @@ namespace HairSalon
       {
         int stylistId = rdr.GetInt32(0);
         string stylistName = rdr.GetString(1);
-        int stylistNumber = rdr.GetInt32(2);
+        // int stylistNumber = rdr.GetInt32(2);
         // int stylistClientId = rdr.GetInt32(3);
-        Stylist newStylist = new Stylist(stylistName, stylistNumber, stylistId);
+        Stylist newStylist = new Stylist(stylistName, stylistId);
         allStylists.Add(newStylist);
       }
 

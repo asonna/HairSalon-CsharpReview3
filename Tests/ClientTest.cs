@@ -14,10 +14,21 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Test_ClientsEmptyAtFirst_0()
+    public void GetAll_ClientsEmptyAtFirst_0()
     {
       int result = Client.GetAll().Count;
       Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_true()
+    {
+      //Arrange, Act
+      Client firstClient = new Client("Ally Berry", 1);
+      Client secondClient = new Client("Ally Berry", 1);
+
+      //Assert
+      Assert.Equal(firstClient, secondClient);
     }
 
 
