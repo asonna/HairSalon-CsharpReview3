@@ -30,14 +30,15 @@ namespace HairSalon
         Client newClient = (Client) otherClient;
         bool idEquality = this.GetId() == newClient.GetId();
         bool nameEquality = this.GetName() ==newClient.GetName();
-        return (idEquality && nameEquality);
+        bool stylistIdEquality = (this.GetStylistId() == newClient.GetStylistId());
+        return (idEquality && nameEquality && stylistIdEquality);
       }
     }
 
-    // public override int GetHashCode()
-    // {
-    //    return this._number.GetHashCode();
-    // }
+    public override int GetHashCode()
+    {
+       return _name.GetHashCode();
+    }
 
     public int GetId()
     {
@@ -49,6 +50,11 @@ namespace HairSalon
       return _name;
     }
 
+    public void SetName(string name)
+    {
+      _name = name;
+    }
+    
     // public int GetNumber()
     // {
     //   return _number;
@@ -89,7 +95,44 @@ namespace HairSalon
       }
     }
 
-    
+    public static Client Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(clientIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundClientId = 0;
+      string foundClientName = null;
+      // int foundClientNumber = null;
+      int foundClientStylistId = 0;
+
+      while(rdr.Read())
+      {
+        foundClientId = rdr.GetInt32(0);
+        foundClientName = rdr.GetString(1);
+        // foundClientNumber = rdr.GetInt32(3);
+        foundClientStylistId = rdr.GetInt32(2);
+      }
+      Client foundClient = new Client(foundClientName, foundClientId, foundClientStylistId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundClient;
+    }
+
     public static List<Client> GetAll()
     {
       List<Client> allClients = new List<Client>{};

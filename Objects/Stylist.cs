@@ -34,10 +34,10 @@ namespace HairSalon
       }
     }
 
-    // public override int GetHashCode()
-    // {
-    //    return this._number.GetHashCode();
-    // }
+    public override int GetHashCode()
+    {
+       return _name.GetHashCode();
+    }
 
     public int GetId()
     {
@@ -47,6 +47,11 @@ namespace HairSalon
     public string GetName()
     {
       return _name;
+    }
+
+    public void SetName(string name)
+    {
+      _name = name;
     }
 
     // public int GetNumber()
@@ -114,6 +119,43 @@ namespace HairSalon
       }
 
       return allStylists;
+    }
+
+
+    public static Stylist Find(int id)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM stylists WHERE id = @StylistId;", conn);
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@StylistId";
+      clientIdParameter.Value = id.ToString();
+      cmd.Parameters.Add(clientIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      int foundStylistId = 0;
+      string foundStylistName = null;
+      // int foundStylistNumber = null;
+
+      while(rdr.Read())
+      {
+        foundStylistId = rdr.GetInt32(0);
+        foundStylistName = rdr.GetString(1);
+        // foundStylistNumber = rdr.GetInt32(3);
+      }
+      Stylist foundStylist = new Stylist(foundStylistName, foundStylistId);
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return foundStylist;
     }
 
 
