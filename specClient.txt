@@ -31,6 +31,17 @@ Input: testClient.GetId()
 Output: testClient
 Description: To ensure that we are able to find any client object based on their Id property.
 
+Behavior: Check to update client name with new name
+Input: Client testClient = new Client("Ally Berry");
+      "Veronique Moore"
+Output: Client testClient = new Client("Veronique Moore")
+Description: This will allow employee to update client name.
+
+Behavior: Check to delete a client from the system
+Input: Client testClient = new Client("Ally Berry");
+Output:0
+Description: Delete the client name so that trying to find it will return nothing.
+
 Behavior:
 Input:
 Output:

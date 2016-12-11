@@ -21,7 +21,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_true()
+    public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_2ndInstanceEquate1st()
     {
       //Arrange, Act
       Stylist firstStylist = new Stylist("Ally Berry");
@@ -32,7 +32,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Save_SavesStylistToDatabase_testList()
+    public void Save_SavesStylistToDatabase_stylistList()
     {
       //Arrange
       Stylist testStylist = new Stylist("Ally Berry");
@@ -48,7 +48,7 @@ namespace HairSalon
 
 
     [Fact]
-    public void Save_AssignsIdToStylistObject_testId()
+    public void Save_AssignsIdToStylistObject_stylistId()
     {
       //Arrange
       Stylist testStylist = new Stylist("Veronique Moore");
@@ -65,7 +65,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Find_FindsStylistInDatabase_testStylist()
+    public void Find_FindsStylistInDatabase_specifiedStylist()
     {
       //Arrange
       Stylist testStylist = new Stylist("Veronique Moore");
@@ -78,6 +78,41 @@ namespace HairSalon
       Assert.Equal(testStylist, foundStylist);
     }
 
+
+    // [Fact]
+    // public void GetClients_RetrievesAllClientsWithStylist_stylistClientList()
+    // {
+    //   Stylist testStylist = new Stylist("Vanessa Paradis");
+    //   testStylist.Save();
+    //
+    //   Client firstClient = new Client("Veronique Moore", testStylist.GetId());
+    //   firstClient.Save();
+    //   Client secondClient = new Client("Diana Ross", testStylist.GetId());
+    //   secondClient.Save();
+    //
+    //
+    //   List<Client> testClientList = new List<Client> {firstClient, secondClient};
+    //   List<Client> resultClientList = testStylist.GetClients();
+    //
+    //   Assert.Equal(testClientList, resultClientList);
+    // }
+
+    [Fact]
+    public void update_ChangeStylistName_StylistwithNewName()
+    {
+      //Arrange
+    Stylist updateStylist = new Stylist("Ally Berry");
+    updateStylist.Save();
+    string newName = "Veronica Moore";
+
+    //Act
+    updateStylist.Update(newName);
+
+    string result = updateStylist.GetName();
+
+    //Assert
+    Assert.Equal(newName, result);
+    }
 
     public void Dispose()
     {

@@ -21,7 +21,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_true()
+    public void Equal_ReturnsTrueForSamePropertiesFromDiffInstances_2ndInstanceEquate1st()
     {
       //Arrange, Act
       Client firstClient = new Client("Ally Berry", 1);
@@ -32,7 +32,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Save_SavesClientToDatabase_testList()
+    public void Save_SavesClientToDatabase_clientList()
     {
       //Arrange
       Client testClient = new Client("Ally Berry", 1);
@@ -47,7 +47,7 @@ namespace HairSalon
     }
 
     [Fact]
-    public void Save_AssignsIdToClientObject_testId()
+    public void Save_AssignsIdToClientObject_clientId()
     {
       //Arrange
       Client testClient = new Client("Veronique Moore", 2);
@@ -63,8 +63,9 @@ namespace HairSalon
       Assert.Equal(testId, result);
     }
 
+
     [Fact]
-    public void Find_FindsClientInDatabase_testClient()
+    public void Find_FindsClientInDatabase_specifiedClient()
     {
       //Arrange
       Client testClient = new Client("Veronique Moore", 2);
@@ -76,6 +77,24 @@ namespace HairSalon
       //Assert
       Assert.Equal(testClient, foundClient);
     }
+
+    [Fact]
+    public void update_ChangeClientStylistId_ClientwithNewStylistId()
+    {
+      //Arrange
+    Client updateClient = new Client("Ally Berry", 3);
+    updateClient.Save();
+    int newStylistId = 5;
+
+    //Act
+    updateClient.Update(newStylistId);
+
+    int result = updateClient.GetStylistId();
+
+    //Assert
+    Assert.Equal(newStylistId, result);
+    }
+
 
     public void Dispose()
     {

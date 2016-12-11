@@ -37,7 +37,7 @@ namespace HairSalon
 
     public override int GetHashCode()
     {
-       return _name.GetHashCode();
+       return this.GetName().GetHashCode();
     }
 
     public int GetId()
@@ -54,7 +54,7 @@ namespace HairSalon
     {
       _name = name;
     }
-    
+
     // public int GetNumber()
     // {
     //   return _number;
@@ -63,6 +63,11 @@ namespace HairSalon
     public int GetStylistId()
     {
       return _stylistId;
+    }
+
+    public void SetStylistId(int newStylistId)
+    {
+      _stylistId = newStylistId;
     }
 
     public void Save()
@@ -164,6 +169,41 @@ namespace HairSalon
       }
 
       return allClients;
+    }
+
+    public void Update(int newStylistId)
+    {
+     SqlConnection conn = DB.Connection();
+     conn.Open();
+
+     SqlCommand cmd = new SqlCommand("UPDATE clients SET stylist_id = @newStylistId OUTPUT INSERTED.stylist_id WHERE id = @ClientId;", conn);
+
+     SqlParameter newStylistIdParameter = new SqlParameter();
+     newStylistIdParameter.ParameterName = "@newStylistId";
+     newStylistIdParameter.Value = newStylistId;
+     cmd.Parameters.Add(newStylistIdParameter);
+
+
+     SqlParameter clientIdParameter = new SqlParameter();
+     clientIdParameter.ParameterName = "@ClientId";
+     clientIdParameter.Value = this.GetId();
+     cmd.Parameters.Add(clientIdParameter);
+     SqlDataReader rdr = cmd.ExecuteReader();
+
+     while(rdr.Read())
+     {
+       this._stylistId = rdr.GetInt32(2);
+     }
+
+     if (rdr != null)
+     {
+       rdr.Close();
+     }
+
+     if (conn != null)
+     {
+       conn.Close();
+     }
     }
 
     public static void DeleteAll()

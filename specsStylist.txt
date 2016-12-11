@@ -36,6 +36,24 @@ Home page
   Output: testStylist
   Description: To ensure that we are able to find any stylist object based on their Id property.
 
+  Behavior: Check to retrieve all Clients under a Stylist
+  Input: Stylist testStylist = new Stylist("Vanessa Paradis");
+        Client firstClient = new Client("Veronique Moore", testStylist.GetId());
+        Client secondClient = new Client("Diana Ross", testStylist.GetId());
+  Output: testClientList()
+  Description: Retrieve a report of all clients under one stylist
+
+  Behavior: Check to update stylist name with new name
+  Input: Stylist testStylist = new Stylist("Ally Berry");
+        "Veronique Moore"
+  Output: Stylist testStylist = new Stylist("Veronique Moore")
+  Description: This will allow employee to update stylist name.
+
+  Behavior: Check to delete a stylist from the system
+  Input: Stylist testStylist = new Stylist("Ally Berry");
+  Output:0
+  Description: Delete the stylist name so that trying to find it will return nothing.
+
   Behavior:
   Input:
   Output:
