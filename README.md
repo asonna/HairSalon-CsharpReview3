@@ -35,14 +35,14 @@ I1. Input 1
 3. Run the following command "dnu restore"
 4. You will need a database called "hair_salon" with the "clients" and "stylists" tables.
 5. Connect to you server and use the following command to create the database:
-     # CREATE DATABASE hair_salon;
-     # GO
-     # USE hair_salon;
-     # GO
-     # CREATE TABLE stylists (id INT IDENTITY(1,1)), name VARCHAR(255));
-     # GO
-     # CREATE TABLE clients (id INT IDENTITY(1,1)), name VARCHAR(255), stylist_id INT IDENTITY(1,1));
-     # GO
+     - CREATE DATABASE hair_salon;
+     - GO
+     - USE hair_salon;
+     - GO
+     - CREATE TABLE stylists (id INT IDENTITY(1,1)), name VARCHAR(255));
+     - GO
+     - CREATE TABLE clients (id INT IDENTITY(1,1)), name VARCHAR(255), stylist_id INT IDENTITY(1,1));
+     - GO
 6. Create a backup of above database called "hair_salon_test" and restore it.
 7. When writing your test, you can use the following command line on PowerShell for testing: "dnx test".  
 8. Run "dnx kestel" command to run this app
