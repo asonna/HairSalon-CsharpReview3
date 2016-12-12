@@ -7,7 +7,7 @@ by Annie Sonna.
 
 ##Description
 
-This webpage is an app for a hair salon. The owner should be able to add a list of the stylists, and for each stylist, add clients who see that stylist. The stylists work independently, so each client only belongs to a single stylist.
+This webpage is an app for a hair salon. The owner should be able to add a list of the stylists, and for each stylist, add clients who see that stylist. The stylists work independently, so each client only belongs to a single stylist.  This webpage demonstrates database usage with one-to-many relationships.
 
 
 ###Objective from Epicodus page
@@ -31,13 +31,26 @@ I1. Input 1
 ##Setup/Installation requirements
 
 1. Clone this repository to desktop.
-2. Use powershell under window machine to navigate to the repository.
-3. Run "dnx kestel" command
-4. In your browser, navigate to http://localhost:5004/
-5. Then you are ready to start recording your addresses.
+2. Use powershell under window machine to navigate to the cloned project folder.
+3. Run the following command "dnu restore"
+4. You will need a database called "hair_salon" with the "clients" and "stylists" tables.
+5. Connect to you server and use the following command to create the database:
+      CREATE DATABASE hair_salon;
+      GO
+      USE hair_salon;
+      GO
+      CREATE TABLE stylists (id INT IDENTITY(1,1)), name VARCHAR(255));
+      GO
+      CREATE TABLE clients (id INT IDENTITY(1,1)), name VARCHAR(255), stylist_id INT IDENTITY(1,1));
+      GO
+6. Create a backup of above database called "hair_salon_test" and restore it.
+7. When writing your test, you can use the following command line on PowerShell for testing: "dnx test".  
+8. Run "dnx kestel" command to run this app
+9. In your browser, navigate to http://localhost:5004/
+10. Then you are ready to start using this webpage!
 
 ## Known Bugs
- Application can take anything as phone number and also duplicated contacts.
+TBD.
 
 
 ## Technologies Used
@@ -48,6 +61,9 @@ I1. Input 1
 4. Nancy Web Application
 5. SQL Server Management
 6. C#
+7. Xunit
+8. Kestrel Server
+9. DNX
 
 
 ## Link to the project on GitHub Pages
