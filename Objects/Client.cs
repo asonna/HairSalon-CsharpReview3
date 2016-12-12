@@ -45,6 +45,11 @@ namespace HairSalon
       return _id;
     }
 
+    public void SetId(int id)
+    {
+      _id = id;
+    }
+
     public string GetName()
     {
       return _name;
@@ -54,10 +59,10 @@ namespace HairSalon
     {
       _name = name;
     }
-
-    // public int GetNumber()
+    //
+    // public void SetStylistId(int stylistId)
     // {
-    //   return _number;
+    //   _stylistId = stylistId;
     // }
 
     public int GetStylistId()
@@ -178,6 +183,11 @@ namespace HairSalon
 
      SqlCommand cmd = new SqlCommand("UPDATE clients SET stylist_id = @newStylistId OUTPUT INSERTED.stylist_id WHERE id = @ClientId;", conn);
 
+     SqlParameter clientNameParameter = new SqlParameter();
+     clientNameParameter.ParameterName = "@ClientName";
+     clientNameParameter.Value = this.GetName();
+     cmd.Parameters.Add(clientNameParameter);
+
      SqlParameter newStylistIdParameter = new SqlParameter();
      newStylistIdParameter.ParameterName = "@newStylistId";
      newStylistIdParameter.Value = newStylistId;
@@ -192,6 +202,8 @@ namespace HairSalon
 
      while(rdr.Read())
      {
+      //  this._id = rdr.GetInt32(0);
+      //  this._name = rdr.GetString(1);
        this._stylistId = rdr.GetInt32(2);
      }
 

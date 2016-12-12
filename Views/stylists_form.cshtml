@@ -12,24 +12,14 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h1>------</h1>
-					<h2>Here are all the clients for this stylist:</h2>
+					<h1>Stylist Entry Form</h1>
 
-					@if (@Model["clients"].Count == 0)
-					{
-					  <p>No clients have been added yet!</p>
-					}
-					else
-					{
-					  <ol>
-					    @foreach (var client in @Model["clients"])
-					    {
-					      <li>@client.GetName()</li>
-					    }
-					  </ol>
-					}
-					<p><a href="/clients/new">Add a new client</a></p>
-					<p><a href="/">Return to Main Page</a></p>
+          <form action="/stylists/new" method="post">
+            <label for="stylist-name">Category name</label>
+            <input id="stylist-name" name="stylist-name" type="text">
+            <button type="submit">Add</button>
+          </form>
+
 				</div>
 			</div>
 		</div>
