@@ -204,7 +204,7 @@ namespace HairSalon
      {
       //  this._id = rdr.GetInt32(0);
       //  this._name = rdr.GetString(1);
-       this._stylistId = rdr.GetInt32(2);
+       this._stylistId = rdr.GetInt32(0);
      }
 
      if (rdr != null)
