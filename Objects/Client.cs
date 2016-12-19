@@ -7,7 +7,6 @@ namespace HairSalon
   public class Client
   {
     private string _name; //Client Name
-    // private int _number;
     private int _id; //Client ID
     private int _stylistId;
 
