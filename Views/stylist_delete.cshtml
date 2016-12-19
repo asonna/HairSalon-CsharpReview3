@@ -12,24 +12,16 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h1>All Stylist List</h1>
+					<h2>Stylist Deletion</h2>
 
-					@if (@Model.Count == 0)
-					{
-					  <h2>There are no stylists.</h2>
-					}
+					<h3>Are you sure you want to delete this stylist and all of the clients?</h3>
+					<h4>@Model.GetName()</h4>
+					<form action="/stylist/delete/@Model.GetId()" method="post">
+					 <input type="hidden" name="_method" value="DELETE">
+					 <button type="submit" class="btn6 btn-lg">DELETE</button>
+					</form>
+					<h3><a href="/">Return to Main Page</a></h3>
 
-					<ul>
-					  @foreach (var stylist in Model)
-					  {
-					    <li><a href="/stylists/@stylist.GetId()">@stylist.GetId() - @stylist.GetName()</a></li>
-							<p><a href="/stylist/@stylist.GetId()/update">Update</a> |
-							<a href="/stylist/@stylist.GetId()/delete">Delete</a></p>
-							<br>
-					  }
-					</ul>
-					<h2><a href="/stylists/new">Add new stylist</a></h2>
-					<h2><a href="/">Main Page</a></h2>
 				</div>
 			</div>
 		</div>
