@@ -67,8 +67,8 @@ namespace HairSalon
       };
 
       Get["stylist/update/{id}"] = parameters => {
-        Stylist selectedStylist = Stylist.Find(parameters.id);
-        return View["stylist_update.cshtml", selectedStylist];
+        Stylist model = Stylist.Find(parameters.id);
+        return View["stylist_update.cshtml", model];
       };
 
       Patch["stylist/update/{id}"] = parameters => {
@@ -118,10 +118,10 @@ namespace HairSalon
 
         selectedClient.Update(clientName, clientStylistId);
         Client updatedClient = Client.Find(parameters.id);
-        Stylist selectedStylist = Stylist.Find(updatedClient.GetStylistId());
+        Stylist SelectedStylist = Stylist.Find(updatedClient.GetStylistId());
 
         model.Add("client", updatedClient);
-        model.Add("stylist", selectedStylist);
+        model.Add("stylist", SelectedStylist);
         return View["success.cshtml", model];
         };
 
@@ -133,10 +133,10 @@ namespace HairSalon
         Get["/client/delete/{id}"] = parameters => {
          Dictionary<string, object> model = new Dictionary<string, object> ();
          Client selectedClient = Client.Find(parameters.id);
-         Stylist selectedStylist = Stylist.Find(selectedClient.GetStylistId());
+         Stylist SelectedStylist = Stylist.Find(selectedClient.GetStylistId());
 
          model.Add("client", selectedClient);
-         model.Add("stylist", selectedStylist);
+         model.Add("stylist", SelectedStylist);
          return View["cleared.cshtml", model];
         };
     }
