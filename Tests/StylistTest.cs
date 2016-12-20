@@ -108,10 +108,12 @@ namespace HairSalon
     //Act
     updateStylist.Update(newName);
 
-    string result = updateStylist.GetName();
+    Stylist result = Stylist.GetAll()[0];
+    int comparingId = result.GetId();
+    Stylist testStylist = new Stylist(newName, comparingId);
 
     //Assert
-    Assert.Equal(newName, result);
+    Assert.Equal(testStylist, result);
     }
 
     [Fact]

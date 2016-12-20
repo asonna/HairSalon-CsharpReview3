@@ -203,19 +203,21 @@ namespace HairSalon
 
      SqlParameter stylistIdParameter = new SqlParameter();
      stylistIdParameter.ParameterName = "@StylistId";
-     stylistIdParameter.Value = this.GetId();
+     stylistIdParameter.Value = this.GetId().ToString();
      cmd.Parameters.Add(stylistIdParameter);
-     SqlDataReader rdr = cmd.ExecuteReader();
 
-     while(rdr.Read())
-     {
-       this._name = rdr.GetString(0);
-     }
+     cmd.ExecuteNonQuery();
+    //  SqlDataReader rdr = cmd.ExecuteReader();
 
-     if (rdr != null)
-     {
-       rdr.Close();
-     }
+    //  while(rdr.Read())
+    //  {
+    //    this._name = rdr.GetString(0);
+    //  }
+     //
+    //  if (rdr != null)
+    //  {
+    //    rdr.Close();
+    //  }
 
      if (conn != null)
      {
@@ -252,7 +254,5 @@ namespace HairSalon
       cmd.ExecuteNonQuery();
       conn.Close();
     }
-
-
   }
 }

@@ -8,18 +8,18 @@ namespace HairSalon
   {
     public HomeModule()
     {
+      // Get["/"] = _ => {
+      //   return View["index.cshtml"];
+      // };
+
       Get["/"] = _ => {
-        return View["index.cshtml"];
+        List<Stylist> AllStylists = Stylist.GetAll();
+        return View["stylists.cshtml", AllStylists];
       };
 
       Get["/clients"] = _ => {
         List<Client> AllClients = Client.GetAll();
         return View["clients.cshtml", AllClients];
-      };
-
-      Get["/stylists"] = _ => {
-        List<Stylist> AllStylists = Stylist.GetAll();
-        return View["stylists.cshtml", AllStylists];
       };
 
       Get["/clients/new"] = _ => {
@@ -31,14 +31,19 @@ namespace HairSalon
         return View["stylists_form.cshtml"];
       };
 
+//
       Post["/stylists/new"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
         newStylist.Save();
         return View["success.cshtml"];
       };
 
+// 
       Post["/clients/new"] = _ => {
-        Client newClient = new Client(Request.Form["client-name"], Request.Form["stylistId"]);
+        Dictionary<string, object> model = new Dictionary<string, object> ();
+        string clientName = Request.Form["client-name"];
+        int clientStylistId = int.Parse(Request.Form["stylistId"]);
+        Client newClient = new Client(clientName, clientStylistId);
         newClient.Save();
         return View["success.cshtml"];
       };

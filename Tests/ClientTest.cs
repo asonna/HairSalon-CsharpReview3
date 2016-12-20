@@ -85,14 +85,18 @@ namespace HairSalon
     Client updateClient = new Client("Ally Berry", 3);
     updateClient.Save();
     int newStylistId = 5;
+    string newName = "Vero Moore";
 
     //Act
-    updateClient.Update(newStylistId);
+    updateClient.Update(newName, newStylistId);
 
-    int result = updateClient.GetStylistId();
+    Client result = Client.GetAll()[0];
+    int comparingId = result.GetId();
+
+    Client testClient = new Client(newName, newStylistId, comparingId);
 
     //Assert
-    Assert.Equal(newStylistId, result);
+    Assert.Equal(testClient, result);
     }
 
 
