@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
 using System;
 
-namespace HairSalon
+namespace HairSalon.Objects
 {
   public class Stylist
   {
     private int _id; //Stylist ID
     private string _name; //Stylist Name
     // private int _number; // Stylist Number
-    // private int _clientId;
 
     public Stylist(string name, int Id = 0) //int stylistId)
     {
@@ -68,7 +68,7 @@ namespace HairSalon
 
       SqlParameter[] insertParameters = new SqlParameter[]
       {
-        new SqlParameter("@StylistName", _name)
+        new SqlParameter("@StylistName", this.GetName())
         // new SqlParameter("@StylistNumber", _number),
       };
       cmd.Parameters.AddRange(insertParameters);
