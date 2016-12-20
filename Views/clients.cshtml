@@ -12,30 +12,27 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h1>Clients List</h1>
+					<h1>Your Clients List</h1>
 
 					@if (@Model.Count == 0)
 					{
-					  <h2>No clients have been added yet!</h2>
+					  <h2>No clients have been assigned to you yet!</h2>
 					}
 
 					else
 					{
-					  <h2>Here is your list of clients:</h2>
-					  <ul>
+					  <h2>Here is your clients list:</h2>
+
 					    @foreach (var client in Model)
 					    {
-					      <li>@client.GetName(); @client.GetStylistId()</li>
+					      <h3><a href="/client/@client.GetId()">@client.GetName()</a></h3>
 					    }
-					  </ul>
-
-					  <form action="/clients/delete" method="post">
-					    <button type="submit">Clear all clients</button>
-					  </form>
 					}
 
-					<h2><a href="/clients/new">Add a new client</a></h2>
-					<h2><a href="/">Main Page</a></h2>
+					<div class="footer-links">
+				    <h4><a href="/clients/new">Add a new client.</a></h4>
+				    <h4><a href="/">Return to Main Page.</a></h4>
+					</div>
 				</div>
 			</div>
 		</div>

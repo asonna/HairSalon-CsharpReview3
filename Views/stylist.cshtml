@@ -12,7 +12,10 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h1>------</h1>
+					<h1>Stylist Info</h1>
+
+					<h3>Name: @Model.GetName()</h3>
+					<hr>
 					<h2>Here are all the clients for this stylist:</h2>
 
 					@if (@Model["clients"].Count == 0)
@@ -28,8 +31,15 @@
 					    }
 					  </ol>
 					}
-					<p><a href="/clients/new">Add a new client</a></p>
+
 					<p><a href="/">Return to Main Page</a></p>
+					<div class="footer-links">
+				    <h4><a href="/stylist/update/@Model.GetId()">Update this stylist's information.</a></h4>
+				    <h4><a href="/stylist/@Model.GetId()/new_client">Add a client for this stylist.</a></h4>
+				    <h4><a href="/clients">View all clients.</a></h4>
+				    <h4><a href="/">Return to Main Page.</a></h4>
+				    <h4 id="warning"><a href="/stylist/delete/@Model.GetId()">Delete this stylist and all of their clients.</a></h4>
+					</div>
 				</div>
 			</div>
 		</div>

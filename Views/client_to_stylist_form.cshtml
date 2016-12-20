@@ -12,17 +12,21 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h1>Client Info</h1>
+					<h1>Add Client to specific Stylist</h1>
 
-					<h3>Name: @Model["client"].GetName()</h3>
-					<h4>Stylist: @Model["stylist"].GetName()</h4>
+					<h3>Add a Client for @Model.GetName()</h3>
+
+					<form action="/stylist/@Model.GetId()/new_client" method="post">
+				    <div class="form-group">
+				        <label for="client-name">Name: </label>
+				        <input type="text" name="client-name" id="client-name" required autofocus>
+				    </div>
+				    <button type="submit" class="btn btn-default">Add Client to Stylist</button>
+					</form>
 
 					<div class="footer-links">
-				    <h4><a href="/client/Update/@Model["client"].GetId()"> Update this client.</a></h4>
-				    <h4><a href="/stylist/@Model["stylist"].GetId()/new_client">Add new client to same stylist.</a></h4>
-				    <h4><a href="/clients">View all clients.</a></h4>
-				    <h4><a href="/">Main Page</a></h4>
-				    <h4 id="warning"><a href="/client/delete/@Model["client"].GetId()">Click here to delete this client.</a></h4>
+					    <h4><a href="/stylist/new">Add new stylist</a></h4>
+					    <h4><a href="/">Main Page</a></h4>
 					</div>
 
 				</div>

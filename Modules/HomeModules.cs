@@ -8,13 +8,9 @@ namespace HairSalon
   {
     public HomeModule()
     {
-      // Get["/"] = _ => {
-      //   return View["index.cshtml"];
-      // };
-
       Get["/"] = _ => {
         List<Stylist> AllStylists = Stylist.GetAll();
-        return View["stylists.cshtml", AllStylists];
+        return View["index.cshtml", AllStylists];
       };
 
       Get["/clients"] = _ => {
@@ -35,27 +31,37 @@ namespace HairSalon
       Post["/stylists/new"] = _ => {
         Stylist newStylist = new Stylist(Request.Form["stylist-name"]);
         newStylist.Save();
-        return View["success.cshtml"];
+        return View["success.cshtml", newStylist];
       };
 
-// 
+//
       Post["/clients/new"] = _ => {
         Dictionary<string, object> model = new Dictionary<string, object> ();
         string clientName = Request.Form["client-name"];
         int clientStylistId = int.Parse(Request.Form["stylistId"]);
+
         Client newClient = new Client(clientName, clientStylistId);
         newClient.Save();
-        return View["success.cshtml"];
+
+        Stylist assignedStylist = Stylist.Find(clientStylistId);
+        model.Add("client", newClient);
+        model.Add("stylist", assignedStylist);
+        return View["success.cshtml", model];
       };
 
       //Routes for our individual view pages
-      Get["/stylists/{id}"] = parameters => {
+      Get["/stylist/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        return View["stylist.cshtml", selectedStylist];
+      };
+
+      Get["/client/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        var SelectedStylist = Stylist.Find(parameters.id);
-        var StylistClients = SelectedStylist.GetClients();
+      Client selectedClient = Client.Find(parameters.id);
+        var SelectedStylist = Stylist.Find(selectedClient.GetStylistId());
+        model.Add("client", selectedClient);
         model.Add("stylist", SelectedStylist);
-        model.Add("clients", StylistClients);
-        return View["stylists.cshtml", model];
+        return View["client.cshtml", model];
       };
 
       Get["stylist/update/{id}"] = parameters => {
@@ -65,11 +71,51 @@ namespace HairSalon
 
       Patch["stylist/update/{id}"] = parameters => {
         Stylist SelectedStylist = Stylist.Find(parameters.id);
-        SelectedStylist.Update(Request.Form["stylist-name"]);
-        return View["success.cshtml"];
+
+        string stylistName = Request.Form["stylist-name"];
+        SelectedStylist.Update(stylistName);
+        Stylist updatedStylist = Stylist.Find(parameters.id);
+        return View["success.cshtml", updatedStylist];
+      };
+
+      Get["/stylist/{id}/new_client"] = parameters =>
+      {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        return View["client_to_stylist_form.cshtml.cshtml", selectedStylist];
+      };
+
+      Post["/stylist/{id}/new_client"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> ();
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+
+        string clientName = Request.Form["client-name"];
+        int clientStylistId = selectedStylist.GetId();
+
+        Client newClient = new Client(clientName, clientStylistId);
+        newClient.Save();
+        model.Add("client", newClient);
+        model.Add("stylist", selectedStylist);
+        return View["success.cshtml", model];
       };
 
 
+
+
+
+      Get["/stylist/delete/{id}"] = parameters => {
+         Stylist selectedStylist = Stylist.Find(parameters.id);
+         return View["cleared.cshtml", selectedStylist];
+        };
+
+        Get["/client/delete/{id}"] = parameters => {
+         Dictionary<string, object> model = new Dictionary<string, object> ();
+         Client selectedClient = Client.Find(parameters.id);
+         Stylist selectedStylist = Stylist.Find(selectedClient.GetStylistId());
+
+         model.Add("client", selectedClient);
+         model.Add("stylist", selectedStylist);
+         return View["cleared.cshtml", model];
+        };
 
     }
   }

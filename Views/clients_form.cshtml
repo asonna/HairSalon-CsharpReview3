@@ -12,22 +12,36 @@
 					<h1>IGIT HAIR SALON</h1>
 				</div>
 				<div class="row">
-					<h2>Add a New Client</h2>
+					<h1>Add a New Client</h1>
 
-					<form action="/clients/new" method="post">
-				  <label for="client-name">Client name:</label>
-				  <input id="client-name" name="client-name" type="text">
-				  <select name="stylistId">
-				    @foreach (var stylist in Model)
-				    {
-				      <option value="@stylist.GetId()">@stylist.GetName()</option>
-				    }
-				  </select>
-				  <button type="submit">Add new client</button>
-					</form>
+					@if(@Model.Count > 0)
+					{
+						<form action="/clients/new" method="post">
+							<div class="form-group">
+								<label for="client-name">Name:</label>
+								<input id="client-name" name="client-name" type="text" required autofocus>
+							</div>
+							<div class="form-group">
+								<span>Stylist:</span>
+								<select name="stylistId">
+									@foreach (var stylist in Model)
+									{
+										<option value="@stylist.GetId()">@stylist.GetName()</option>
+									}
+								</select>
+							</div>
+							<button type="submit" class="btn btn-default">Add new client</button>
+						</form>
+					}
+					else
+					{
+						<h2>Please add at least one stylist before adding a client.</h2>
+					}
 
-					<h2><a href="/">Main Page</a></h2>
-					<h2><a href="/clients">View all clients</a></h2>
+					<div class="footer-links">
+				    <h4><a href="/stylists/new">Add new stylist</a></h4>
+				    <h4><a href="/">Main Page</a></h4>
+					</div>
 
 				</div>
 			</div>
