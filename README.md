@@ -50,7 +50,7 @@ I1. Input 1
 10. Then you are ready to start using this webpage!
 
 ## Known Bugs
-TBD.
+None identified
 
 
 ## Technologies Used
