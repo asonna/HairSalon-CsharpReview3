@@ -22,7 +22,11 @@
 				    <h4><a href="/stylist/@Model["stylist"].GetId()/new_client">Add new client to same stylist.</a></h4>
 				    <h4><a href="/clients">View all clients.</a></h4>
 				    <h4><a href="/">Main Page</a></h4>
-				    <h4 id="warning"><a href="/client/delete/@Model["client"].GetId()">Click here to delete this client.</a></h4>
+						<form class="" action="/client/delete/@Model["client"].GetId()" method="post">
+							<input type="hidden" name="_method" value="DELETE">
+							<button type="submit" name="button" class="btn btn-danger">Click here to delete this client</button>
+						</form>
+
 					</div>
 
 				</div>

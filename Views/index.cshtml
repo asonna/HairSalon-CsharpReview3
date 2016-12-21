@@ -25,8 +25,13 @@
 							@foreach (var stylist in Model)
 							{
 								<li><a href="/stylist/@stylist.GetId()">@stylist.GetId() - @stylist.GetName()</a></li>
-								<!-- <p><a href="/stylist/@stylist.GetId()/up">Update</a> |
-								<a href="/stylist/@stylist.GetId()/delete">Delete</a></p> -->
+								<div class="oneliner">
+									<a href="/stylist/update/@stylist.GetId()" class="btn btn-default">Update</a>
+									<form class="" action="/stylist/delete/@stylist.GetId()" method="post">
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" name="button" class="btn btn-default">Delete</button>
+									</form>
+								</div>
 								<br>
 							}
 						</ul>

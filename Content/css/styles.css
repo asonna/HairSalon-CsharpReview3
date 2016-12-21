@@ -1,5 +1,6 @@
 body {
   background-image: linear-gradient(to bottom, lightpink, purple, lightpink);
+  background-attachment: fixed;
 }
 
 input {
@@ -7,4 +8,17 @@ input {
   border-radius: 5px;
   box-shadow: 2px 2px 4px black;
   padding-left: 4px;
+}
+
+.oneliner {
+  display: inline-flex;
+}
+
+.btn {
+  margin-right: 10px;
+  height: 30px;
+}
+
+li {
+  font-size: 20px;
 }

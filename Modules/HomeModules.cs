@@ -107,9 +107,9 @@ namespace HairSalon
         model.Add("client", selectedClient);
         model.Add("all stylists", Stylist.GetAll());
         return View["client_update.cshtml", model];
-        };
+      };
 
-        Patch["/client/update/{id}"] = parameters => {
+      Patch["/client/update/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object> ();
         Client selectedClient = Client.Find(parameters.id);
 
@@ -123,14 +123,20 @@ namespace HairSalon
         model.Add("client", updatedClient);
         model.Add("stylist", SelectedStylist);
         return View["success.cshtml", model];
-        };
+      };
 
       Get["/stylist/delete/{id}"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
         return View["cleared.cshtml", selectedStylist];
-        };
+      };
 
-        Get["/client/delete/{id}"] = parameters => {
+      Delete["/stylist/delete/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        selectedStylist.Delete();
+        return View["success.cshtml"];
+      };
+
+      Get["/client/delete/{id}"] = parameters => {
          Dictionary<string, object> model = new Dictionary<string, object> ();
          Client selectedClient = Client.Find(parameters.id);
          Stylist SelectedStylist = Stylist.Find(selectedClient.GetStylistId());
@@ -138,7 +144,13 @@ namespace HairSalon
          model.Add("client", selectedClient);
          model.Add("stylist", SelectedStylist);
          return View["cleared.cshtml", model];
-        };
+       };
+
+       Delete["/client/delete/{id}"] = parameters => {
+         Client selectedClient = Client.Find(parameters.id);
+         selectedClient.Delete();
+         return View["success.cshtml"];
+       };
     }
   }
 }
